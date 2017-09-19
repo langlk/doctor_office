@@ -16,4 +16,18 @@ describe('Doctor') do
       expect(doc_test.id).to(eq(nil))
     end
   end
+
+  describe('#==') do
+    it "declares two Doctors not equal if their names, specialties, or ids are not equal" do
+      doc1 = Doctor.new({:id => 1, :name => "Strange", :specialty => "Magic"})
+      doc2 = Doctor.new({:id => 1, :name => "Strange", :specialty => "Surgeon"})
+      expect(doc1).not_to(eq(doc2))
+    end
+
+    it "delcares two Doctors equal if they have the same name, specialty, and id" do
+      doc1 = Doctor.new({:id => 1, :name => "Strange", :specialty => "Surgeon"})
+      doc2 = Doctor.new({:id => 1, :name => "Strange", :specialty => "Surgeon"})
+      expect(doc1).to(eq(doc2))
+    end
+  end
 end

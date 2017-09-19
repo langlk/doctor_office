@@ -36,6 +36,14 @@ describe('Patient') do
   end
 
   describe('#==') do
+    it "declares two patients as unequal if they don't have the same name, id, birthday, and doctor" do
+      attributes = {:name => "Frank", :birthday => "1990-01-01"}
+      patient1 = Patient.new(attributes)
+      patient2 = Patient.new(attributes)
+      patient2.doctor_id = 5
+      expect(patient1).not_to(eq(patient2))
+    end
+
     it "declares two patients as equal if they have the same name, id, birthday, and doctor" do
       attributes = {:name => "Frank", :birthday => "1990-01-01"}
       patient1 = Patient.new(attributes)

@@ -1,0 +1,38 @@
+<% if @patient %>
+  <% if @user == "patient" %>
+    <h2>Welcome, <%= @patient.name %>!</h2>
+
+    <h3>Your Information:</h3>
+  <% else %>
+    <h2>Patient Information</h2>
+
+    <% if @user == "admin" %>
+      <h5><a href="/admin/patients/edit/<%= @patient.id %>">Edit</a></h5>
+    <% end %>
+
+    <p>
+      <strong>Name:</strong> <%= @patient.name %>
+    </p>
+  <% end %>
+
+  <p>
+    <strong>Birthday:</strong> <%= @patient.birthday %>
+  </p>
+  <p>
+    <strong>Assigned Doctor:</strong>
+    <% if @patient.doctor_id != -1 %>
+        <a href="/<%= @user %>/doctors/<%= @patient.doctor_id %>"><%= Doctor.find(@patient.doctor_id).name %></a>
+    <% else %>
+      Unassigned
+    <% end %>
+  </p>
+<% else %>
+  <h2>Patient Not Found</h2>
+<% end %>
+
+<% if  @user == "admin" %>
+  <p><a href="/admin/patients">Back to Patient List</a></p>
+  <p><a href="/admin">Back to Administration</a></p>
+<% else %>
+  <p><a href="/<%= @user %>">Back to <%= @user.capitalize %> Portal</a></p>
+<% end %>

@@ -1,0 +1,46 @@
+<% if @doctor %>
+  <% if @user == "doctor" %>
+    <h2>Welcome, Doctor <%= @doctor.name %></h2>
+
+    <h3>Your Information:</h3>
+  <% else %>
+    <h2>Doctor Information</h2>
+
+    <% if @user == "admin" %>
+      <h5><a href="/admin/doctors/edit/<%= @doctor.id %>">Edit</a></h5>
+    <% end %>
+  <% end %>
+
+  <p>
+    <strong>Name:</strong> <%= @doctor.name %>
+  </p>
+  <p>
+    <strong>Specialty:</strong> <%= @doctor.specialty %>
+  </p>
+  <% if @user != "patient" %>
+    <p>
+      <strong>Assigned Patients</strong>
+      <% if @doctor.patients.any? %>
+        <ul>
+          <% @doctor.patients.each do |patient| %>
+            <li>
+              <a href="/<%= @user %>/patients/<%= patient.id %>"><%= patient.name %></a>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No assigned patients</p>
+      <% end %>
+    </p>
+  <% end %>
+
+<% else %>
+  <h2>Doctor Not Found</h2>
+<% end %>
+
+<% if @user == "admin" %>
+  <p><a href="/admin/doctors">Back to Doctors List</a></p>
+  <p><a href="/admin">Back to Administration</a></p>
+<% else %>
+  <p><a href="/<%= @user %>">Back to <%= @user.capitalize %> Portal</a></p>
+<% end %>

@@ -18,7 +18,8 @@ end
 
 get('/doctor/info') do
   @doctor = Doctor.find_by_name(params["doctor-name"])
-  erb(:doctor_info)
+  @user = "doctor"
+  erb(:doctor)
 end
 
 get('/patient') do
@@ -27,7 +28,8 @@ end
 
 get('/patient/info') do
   @patient = Patient.find_by_name(params["patient-name"])
-  erb(:patient_info)
+  @user = "patient"
+  erb(:patient)
 end
 
 get('/admin') do
@@ -46,9 +48,10 @@ get('/admin/:people_type') do
   erb(:people_list)
 end
 
-get('/admin/patients/:id') do
+get('/:user/patients/:id') do
   @patient = Patient.find(params[:id].to_i)
-  erb(:admin_patient)
+  @user = params[:user]
+  erb(:patient)
 end
 
 get('/admin/patients/edit/:id') do
@@ -66,9 +69,10 @@ post('/admin/patients/edit/:id') do
   redirect "/admin/patients/#{patient.id}"
 end
 
-get('/admin/doctors/:id') do
+get('/:user/doctors/:id') do
   @doctor = Doctor.find(params[:id].to_i)
-  erb(:admin_doctor)
+  @user = params[:user]
+  erb(:doctor)
 end
 
 get('/admin/doctors/edit/:id') do

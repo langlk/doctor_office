@@ -36,7 +36,7 @@
 
   <div class="form-group">
     <label for="assigned-doctor">Patient's Doctor</label>
-    <select class="form-control" name="assigned-doctor">
+    <select id="assigned-doctor" class="form-control" name="assigned-doctor">
       <option value="-1">Unassigned</option>
       <% @doctors.each do |doctor| %>
         <option value="<%= doctor.id %>"><%= doctor.name %></option>

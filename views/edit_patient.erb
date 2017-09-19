@@ -1,29 +1,35 @@
-<form action="/admin/patients/edit/<%= @patient.id %>" method="post">
-  <h3>Edit Patient</h3>
+<% if @patient %>
+  <form action="/admin/patients/edit/<%= @patient.id %>" method="post">
+    <h3>Edit Patient</h3>
 
-  <div class="form-group">
-    <label for="patient-name">Patient Name</label>
-    <input type="text" name="patient-name" class="form-control" value="<%= @patient.name %>">
-  </div>
+    <div class="form-group">
+      <label for="patient-name">Patient Name</label>
+      <input type="text" name="patient-name" class="form-control" value="<%= @patient.name %>">
+    </div>
 
-  <div class="form-group">
-    <label for="patient-birthday">Birthday</label>
-    <input type="date" name="patient-birthday" class="form-control" value="<%= @patient.birthday %>">
-  </div>
+    <div class="form-group">
+      <label for="patient-birthday">Birthday</label>
+      <input type="date" name="patient-birthday" class="form-control" value="<%= @patient.birthday %>">
+    </div>
 
-  <div class="form-group">
-    <label for="assigned-doctor">Patient's Doctor</label>
-    <select class="form-control" name="assigned-doctor">
-      <option value="-1">Unassigned</option>
-      <% @doctors.each do |doctor| %>
-        <% selected_string = "" %>
-        <% if doctor.id == @patient.doctor_id %>
-          <% selected_string = 'selected="selected"' %>
+    <div class="form-group">
+      <label for="assigned-doctor">Patient's Doctor</label>
+      <select class="form-control" name="assigned-doctor">
+        <option value="-1">Unassigned</option>
+        <% @doctors.each do |doctor| %>
+          <% selected_string = "" %>
+          <% if doctor.id == @patient.doctor_id %>
+            <% selected_string = 'selected="selected"' %>
+          <% end %>
+          <option value="<%= doctor.id %>" <%= selected_string %>><%= doctor.name %></option>
         <% end %>
-        <option value="<%= doctor.id %>" <%= selected_string %>><%= doctor.name %></option>
-      <% end %>
-    </select>
-  </div>
+      </select>
+    </div>
 
-  <button type="submit" class="btn">Update</button>
-</form>
+    <a href="/admin/patients/<%= @patient.id %>"><button type="button" class="btn">Cancel</button></a>
+    <button type="submit" class="btn">Update</button>
+  </form>
+<% else %>
+  <h2>Patient Not Found</h2>
+  <p><a href="/admin/patients">Back to Patients List</a></p>
+<% end %>

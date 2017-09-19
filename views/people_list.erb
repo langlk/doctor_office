@@ -1,0 +1,14 @@
+<h2><%= @people_type.capitalize %></h2>
+<% if @people.any? %>
+  <ul>
+    <% @people.each do |person| %>
+      <li>
+        <a href="/admin/<%= @people_type %>/<%= person.id %>"><%= person.name %></a>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have not saved any <%= @people_type %>.</p>
+<% end %>
+
+<p><a href="/admin">Back to Administration</a></p>

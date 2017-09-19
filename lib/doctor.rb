@@ -55,4 +55,13 @@ class Doctor
     specialty = results.first["specialty"]
     Doctor.new({:id => id, :name => name, :specialty => specialty})
   end
+
+  def self.find_by_name(name)
+    all_doctors = self.all
+    all_doctors.each do |doctor|
+      if doctor.name.downcase == name.downcase
+        return doctor
+      end
+    end
+  end
 end

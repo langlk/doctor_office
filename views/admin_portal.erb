@@ -1,5 +1,10 @@
 <h1>Welcome, Administrator!</h1>
 
+<ul>
+  <li><a href="/admin/doctors">All Doctors</a></li>
+  <li><a href="/admin/patients">All Patients</a></li>
+</ul>
+
 <form action="/add_doctor" method="post">
   <h3>Add a Doctor</h3>
 
@@ -34,7 +39,7 @@
     <select class="form-control" name="assigned-doctor">
       <option value="-1">Unassigned</option>
       <% @doctors.each do |doctor| %>
-        <option value="<%= doctor.id %>">Dr. <%= doctor.name %></option>
+        <option value="<%= doctor.id %>"><%= doctor.name %></option>
       <% end %>
     </select>
   </div>

@@ -76,4 +76,14 @@ describe('Doctor') do
       expect(Doctor.find(doc1.id)).to(eq(doc1))
     end
   end
+
+  describe('.find_by_name') do
+    it "finds a saved doctor by name, ignoring case" do
+      doc1 = Doctor.new({:name => "Strange", :specialty => "Surgeon"})
+      doc1.save
+      doc2 = Doctor.new({:name => "Who", :specialty => "Time"})
+      doc2.save
+      expect(Doctor.find_by_name("strange")).to(eq(doc1))
+    end
+  end
 end

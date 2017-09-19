@@ -37,4 +37,18 @@ describe('Administrative Portal', {:type => :feature}) do
     click_button('Update')
     expect(page).to have_content("Harold")
   end
+
+  it "allows admin to edit an existing doctor" do
+    visit('/admin')
+    fill_in('doctor-name', :with => "Who")
+    fill_in('doctor-specialty', :with => "Time")
+    click_button('Add Doctor')
+    click_link('Back to Administration')
+    click_link('All Doctors')
+    click_link('Who')
+    click_link('Edit')
+    fill_in('doctor-specialty', :with => "Space")
+    click_button('Update')
+    expect(page).to have_content('Space')
+  end
 end

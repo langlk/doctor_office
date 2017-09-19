@@ -1,6 +1,8 @@
 <% if @doctor %>
   <h2>Doctor Information</h2>
 
+  <h5><a href="/admin/doctors/edit/<%= @doctor.id %>">Edit</a></h5>
+
   <p>
     <strong>Name:</strong> <%= @doctor.name %>
   </p>

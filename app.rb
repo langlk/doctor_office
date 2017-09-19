@@ -71,6 +71,19 @@ get('/admin/doctors/:id') do
   erb(:admin_doctor)
 end
 
+get('/admin/doctors/edit/:id') do
+  @doctor = Doctor.find(params[:id].to_i)
+  erb(:edit_doctor)
+end
+
+post('/admin/doctors/edit/:id') do
+  doctor = Doctor.find(params[:id].to_i)
+  doctor.name = params["doctor-name"]
+  doctor.specialty = params["doctor-specialty"]
+  doctor.save
+  redirect "/admin/doctors/#{doctor.id}"
+end
+
 post('/add_doctor') do
   name = params["doctor-name"]
   specialty = params["doctor-specialty"]

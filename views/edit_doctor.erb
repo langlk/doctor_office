@@ -1,0 +1,15 @@
+<form action="/admin/doctors/edit/<%= @doctor.id %>" method="post">
+  <h3>Edit Doctor</h3>
+
+  <div class="form-group">
+    <label for="doctor-name">Name</label>
+    <input type="text" name="doctor-name" class="form-control" value="<%= @doctor.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="doctor-specialty">Specialty</label>
+    <input type="text" name="doctor-specialty" class="form-control" value="<%= @doctor.specialty %>">
+  </div>
+
+  <button type="submit" class="btn">Update</button>
+</form>

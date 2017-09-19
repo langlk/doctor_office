@@ -76,4 +76,16 @@ describe('Patient') do
       expect(Patient.all).to(eq([patient1, patient2]))
     end
   end
+
+  describe(".find_by_name") do
+    it "finds a patient in the database by name, ignoring case" do
+      attributes1 = {:name => "Frank", :birthday => "1990-01-01"}
+      attributes2 = {:name => "Herbert", :birthday => "1990-01-01"}
+      patient1 = Patient.new(attributes1)
+      patient1.save
+      patient2 = Patient.new(attributes2)
+      patient2.save
+      expect(Patient.find_by_name("HERBERT")).to(eq(patient2))
+    end
+  end
 end

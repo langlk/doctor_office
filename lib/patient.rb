@@ -43,4 +43,13 @@ class Patient
     end
     all_patients
   end
+
+  def self.find_by_name(name)
+    all_patients = self.all
+    all_patients.each do |patient|
+      if patient.name.downcase == name.downcase
+        return patient
+      end
+    end
+  end
 end

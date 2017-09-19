@@ -46,7 +46,6 @@ describe('Patient') do
   end
 
   describe('#save') do
-
     it "updates a patient's information in the database if patient has been saved, keeping id the same" do
       attributes = {:name => "Frank", :birthday => "1990-01-01"}
       patient_test = Patient.new(attributes)

@@ -10,15 +10,18 @@
 
   <div class="form-group">
     <label for="doctor-name">Name</label>
-    <input type="text" name="doctor-name" class="form-control">
+    <input id="doctor-name" type="text" name="doctor-name" class="form-control">
   </div>
 
   <div class="form-group">
     <label for="doctor-specialty">Specialty</label>
-    <input type="text" name="doctor-specialty" class="form-control">
+    <input id="doctor-specialty" type="text" name="doctor-specialty" class="form-control">
   </div>
 
-  <button type="submit" class="btn">Add Doctor</button>
+  <button type="submit" class="btn submit-doctor">Add Doctor</button>
+  <div id="doctor-alert" class="alert alert-danger">
+    <p>Name and specialty cannot be blank.</p>
+  </div>
 </form>
 
 <form action="/add_patient" method="post">
@@ -26,12 +29,12 @@
 
   <div class="form-group">
     <label for="patient-name">Patient Name</label>
-    <input type="text" name="patient-name" class="form-control">
+    <input id="patient-name" type="text" name="patient-name" class="form-control">
   </div>
 
   <div class="form-group">
     <label for="patient-birthday">Birthday</label>
-    <input type="date" name="patient-birthday" class="form-control">
+    <input id="patient-birthday" type="date" name="patient-birthday" class="form-control">
   </div>
 
   <div class="form-group">
@@ -44,5 +47,8 @@
     </select>
   </div>
 
-  <button type="submit" class="btn">Add Patient</button>
+  <button type="submit" class="btn submit-patient">Add Patient</button>
+  <div id="patient-alert" class="alert alert-danger">
+    <p>Name and birthday cannot be blank.</p>
+  </div>
 </form>

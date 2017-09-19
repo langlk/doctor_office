@@ -4,16 +4,19 @@
 
     <div class="form-group">
       <label for="doctor-name">Name</label>
-      <input type="text" name="doctor-name" class="form-control" value="<%= @doctor.name %>">
+      <input id="doctor-name" type="text" name="doctor-name" class="form-control" value="<%= @doctor.name %>">
     </div>
 
     <div class="form-group">
       <label for="doctor-specialty">Specialty</label>
-      <input type="text" name="doctor-specialty" class="form-control" value="<%= @doctor.specialty %>">
+      <input id="doctor-specialty" type="text" name="doctor-specialty" class="form-control" value="<%= @doctor.specialty %>">
     </div>
 
     <a href="/admin/doctors/<%= @doctor.id %>"><button type="button" class="btn">Cancel</button></a>
-    <button type="submit" class="btn">Update</button>
+    <button type="submit" class="btn submit-doctor">Update</button>
+    <div id="doctor-alert" class="alert alert-danger">
+      <p>Name and specialty cannot be blank.</p>
+    </div>
   </form>
 <% else %>
   <h2>Doctor Not Found</h2>

@@ -1,0 +1,4 @@
+#doctor-alert, #patient-alert {
+  display: none;
+  margin-top: 10px;
+}

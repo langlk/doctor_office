@@ -52,4 +52,14 @@ describe('Doctor') do
       expect(Doctor.all).to(eq([doc1, doc2]))
     end
   end
+
+  describe('.find') do
+    it "finds a saved doctor by their id" do
+      doc1 = Doctor.new({:name => "Strange", :specialty => "Surgeon"})
+      doc1.save
+      doc2 = Doctor.new({:name => "Who", :specialty => "Time"})
+      doc2.save
+      expect(Doctor.find(doc1.id)).to(eq(doc1))
+    end
+  end
 end

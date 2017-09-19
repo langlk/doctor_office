@@ -33,4 +33,12 @@ class Doctor
     end
     all_doctors
   end
+
+  def self.find(doctor_id)
+    results = DB.exec("SELECT * FROM doctors WHERE id = #{doctor_id};")
+    id = results.first["id"].to_i
+    name = results.first["name"]
+    specialty = results.first["specialty"]
+    Doctor.new({:id => id, :name => name, :specialty => specialty})
+  end
 end

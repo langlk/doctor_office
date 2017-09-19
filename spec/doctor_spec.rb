@@ -32,12 +32,6 @@ describe('Doctor') do
   end
 
   describe('#save') do
-    it "saves a Doctor to the database and gives it an id" do
-      doc_test = Doctor.new({:name => "Strange", :specialty => "Surgeon"})
-      doc_test.save
-      expect(doc_test.id).not_to(eq(nil))
-    end
-
     it "updates a Doctor if they are already in a database, and keeps id the same" do
       doc_test = Doctor.new({:name => "Strange", :specialty => "Surgeon"})
       doc_test.save

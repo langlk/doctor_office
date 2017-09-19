@@ -12,29 +12,25 @@ get('/') do
   erb(:index)
 end
 
-get('/doctor') do
-  erb(:doctor_portal)
+get('/:user') do
+  @user = params[:user]
+  erb(:portal)
 end
 
-get('/doctor/info') do
-  @doctor = Doctor.find_by_name(params["doctor-name"])
-  @user = "doctor"
-  erb(:doctor)
-end
-
-get('/patient') do
-  erb(:patient_portal)
-end
-
-get('/patient/info') do
-  @patient = Patient.find_by_name(params["patient-name"])
-  @user = "patient"
-  erb(:patient)
-end
-
-get('/admin') do
-  @doctors = Doctor.all
-  erb(:admin_portal)
+get('/:user/landing') do
+  @user = params[:user]
+  if @user == "doctor"
+    @doctor = Doctor.find_by_name(params["doctor-name"])
+    @user = "doctor"
+    return erb(:doctor)
+  elsif @user == "admin"
+    @doctors = Doctor.all
+    erb(:admin_portal)
+  else
+    @patient = Patient.find_by_name(params["patient-name"])
+    @user = "patient"
+    erb(:patient)
+  end
 end
 
 get('/admin/:people_type') do

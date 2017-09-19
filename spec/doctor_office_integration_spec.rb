@@ -5,7 +5,7 @@ set(:show_exceptions, false)
 
 describe('Administrative Portal', {:type => :feature}) do
   it "allows admin to add a new doctor" do
-    visit('/admin')
+    visit('/admin/landing')
     fill_in('doctor-name', :with => "Strange")
     fill_in('doctor-specialty', :with => "Surgeon")
     click_button('Add Doctor')
@@ -15,7 +15,7 @@ describe('Administrative Portal', {:type => :feature}) do
   end
 
   it "allows admin to add a new patient" do
-    visit('/admin')
+    visit('/admin/landing')
     fill_in('doctor-name', :with => "Strange")
     fill_in('doctor-specialty', :with => "Surgeon")
     click_button('Add Doctor')
@@ -30,7 +30,7 @@ describe('Administrative Portal', {:type => :feature}) do
   end
 
   it "allows admin to edit an existing patient" do
-    visit('/admin')
+    visit('/admin/landing')
     fill_in('patient-name', :with => "Herbert")
     fill_in('patient-birthday', :with => "12-12-1950")
     click_button('Add Patient')
@@ -44,7 +44,7 @@ describe('Administrative Portal', {:type => :feature}) do
   end
 
   it "allows admin to edit an existing doctor" do
-    visit('/admin')
+    visit('/admin/landing')
     fill_in('doctor-name', :with => "Who")
     fill_in('doctor-specialty', :with => "Time")
     click_button('Add Doctor')
@@ -60,7 +60,7 @@ end
 
 describe('Doctor Portal', {:type => :feature}) do
   it "does not allow doctor to edit information" do
-    visit('/admin')
+    visit('/admin/landing')
     fill_in('doctor-name', :with => "Strange")
     fill_in('doctor-specialty', :with => "Surgeon")
     click_button('Add Doctor')
@@ -73,7 +73,7 @@ end
 
 describe('Patient Portal', {:type => :feature}) do
   it "does not allow patient to edit information" do
-    visit('/admin')
+    visit('/admin/landing')
     fill_in('patient-name', :with => "Frank")
     fill_in('patient-birthday', :with => "12-12-1950")
     click_button('Add Patient')
@@ -84,7 +84,7 @@ describe('Patient Portal', {:type => :feature}) do
   end
 
   it "does not allow patient to view list of doctor's patients" do
-    visit('/admin')
+    visit('/admin/landing')
     fill_in('doctor-name', :with => "Strange")
     fill_in('doctor-specialty', :with => "Surgeon")
     click_button('Add Doctor')

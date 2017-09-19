@@ -40,7 +40,7 @@
 
 <% if @user == "admin" %>
   <p><a href="/admin/doctors">Back to Doctors List</a></p>
-  <p><a href="/admin">Back to Administration</a></p>
+  <p><a href="/admin/landing">Back to Administration</a></p>
 <% else %>
   <p><a href="/<%= @user %>">Back to <%= @user.capitalize %> Portal</a></p>
 <% end %>

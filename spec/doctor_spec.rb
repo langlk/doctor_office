@@ -39,6 +39,20 @@ describe('Doctor') do
     end
   end
 
+  describe('#patients') do
+    it "returns an array of all patients assigned to a doctor" do
+      doc_test = Doctor.new({:name => "Strange", :specialty => "Surgeon"})
+      doc_test.save
+      attributes1 = {:name => "Frank", :birthday => "1990-01-01", :doctor_id => doc_test.id}
+      attributes2 = {:name => "Herbert", :birthday => "1990-01-01", :doctor_id => doc_test.id}
+      patient1 = Patient.new(attributes1)
+      patient1.save
+      patient2 = Patient.new(attributes2)
+      patient2.save
+      expect(doc_test.patients).to(eq([patient1, patient2]))
+    end
+  end
+
   describe('.all') do
     it "starts out with an empty array" do
       expect(Doctor.all).to(eq([]))

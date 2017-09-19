@@ -25,6 +25,20 @@ class Doctor
     @id = results.first["id"].to_i
   end
 
+  def patients
+    assigned_patients = []
+    results = DB.exec("SELECT * FROM patients WHERE doctor_id = #{@id};")
+    results.each do |result|
+      attributes = {}
+      attributes[:id] = result["id"].to_i
+      attributes[:name] = result["name"]
+      attributes[:birthday] = result["birthday"][0...10]
+      attributes[:doctor_id] = result["doctor_id"].to_i
+      assigned_patients.push(Patient.new(attributes))
+    end
+    assigned_patients
+  end
+
   def self.all
     all_doctors = []
     results = DB.exec("SELECT * FROM doctors;")

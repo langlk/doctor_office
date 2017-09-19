@@ -16,8 +16,18 @@ get('/doctor') do
   erb(:doctor_portal)
 end
 
+get('/doctor/info') do
+  @doctor = Doctor.find_by_name(params["doctor-name"])
+  erb(:doctor_info)
+end
+
 get('/patient') do
   erb(:patient_portal)
+end
+
+get('/patient/info') do
+  @patient = Patient.find_by_name(params["patient-name"])
+  erb(:patient_info)
 end
 
 get('/admin') do

@@ -50,10 +50,14 @@ class Doctor
 
   def self.find(doctor_id)
     results = DB.exec("SELECT * FROM doctors WHERE id = #{doctor_id};")
-    id = results.first["id"].to_i
-    name = results.first["name"]
-    specialty = results.first["specialty"]
-    Doctor.new({:id => id, :name => name, :specialty => specialty})
+    if results.any?
+      id = results.first["id"].to_i
+      name = results.first["name"]
+      specialty = results.first["specialty"]
+      return Doctor.new({:id => id, :name => name, :specialty => specialty})
+    else
+      return nil
+    end
   end
 
   def self.find_by_name(name)
@@ -63,5 +67,6 @@ class Doctor
         return doctor
       end
     end
+    nil
   end
 end

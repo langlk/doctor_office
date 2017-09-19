@@ -46,12 +46,16 @@ class Patient
 
   def self.find(patient_id)
     results = DB.exec("SELECT * FROM patients WHERE id = #{patient_id};")
-    attributes = {}
-    attributes[:id] = results.first["id"].to_i
-    attributes[:name] = results.first["name"]
-    attributes[:birthday] = results.first["birthday"][0...10]
-    attributes[:doctor_id] = results.first["doctor_id"].to_i
-    Patient.new(attributes)
+    if results.any?
+      attributes = {}
+      attributes[:id] = results.first["id"].to_i
+      attributes[:name] = results.first["name"]
+      attributes[:birthday] = results.first["birthday"][0...10]
+      attributes[:doctor_id] = results.first["doctor_id"].to_i
+      return Patient.new(attributes)
+    else
+      return nil
+    end
   end
 
   def self.find_by_name(name)
@@ -61,5 +65,6 @@ class Patient
         return patient
       end
     end
+    nil
   end
 end

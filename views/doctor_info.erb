@@ -1,0 +1,25 @@
+<% if @doctor %>
+  <h2>Welcome, Doctor <%= @doctor.name %></h2>
+
+  <p>
+    <strong>Specialty:</strong> <%= @doctor.specialty %>
+  </p>
+  <p>
+    <strong>Assigned Patients</strong>
+    <% if @doctor.patients.any? %>
+      <ul>
+        <% @doctor.patients.each do |patient| %>
+          <li>
+            <a href="/doctor/patients/<%= patient.id %>"><%= patient.name %></a>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No assigned patients</p>
+    <% end %>
+  </p>
+  <% else %>
+  <h2>Doctor Not Found</h2>
+<% end %>
+
+<p><a href="/doctor">Back to Doctor Portal</a></p>

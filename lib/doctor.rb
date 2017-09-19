@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
 class Doctor
-  attr_reader :id, :name, :specialty
+  attr_reader :id
+  attr_accessor :name, :specialty
 
   def initialize(attributes)
     if attributes.has_key?(:id)
@@ -21,8 +22,12 @@ class Doctor
   end
 
   def save
-    results = DB.exec("INSERT INTO doctors (name, specialty) VALUES ('#{@name}', '#{@specialty}') RETURNING id;")
-    @id = results.first["id"].to_i
+    if @id # doc has been added already, update in DB
+      DB.exec("UPDATE doctors SET name = '#{@name}', specialty='#{@specialty}' WHERE id = #{@id};")
+    else # doctor is new, insert into database
+      results = DB.exec("INSERT INTO doctors (name, specialty) VALUES ('#{@name}', '#{@specialty}') RETURNING id;")
+      @id = results.first["id"].to_i
+    end
   end
 
   def patients

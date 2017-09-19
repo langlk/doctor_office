@@ -37,6 +37,16 @@ describe('Doctor') do
       doc_test.save
       expect(doc_test.id).not_to(eq(nil))
     end
+
+    it "updates a Doctor if they are already in a database, and keeps id the same" do
+      doc_test = Doctor.new({:name => "Strange", :specialty => "Surgeon"})
+      doc_test.save
+      test_id = doc_test.id
+      doc_test.name = "Stephen Strange"
+      doc_test.save
+      expect(doc_test.id).to(eq(test_id))
+      expect(Doctor.find(doc_test.id)).to(eq(doc_test))
+    end
   end
 
   describe('#patients') do

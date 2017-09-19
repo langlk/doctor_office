@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 class Patient
-  attr_reader :id, :name, :birthday
-  attr_accessor :doctor_id
+  attr_reader :id
+  attr_accessor :doctor_id, :name, :birthday
 
   def initialize(attributes)
     @id = nil

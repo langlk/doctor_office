@@ -21,10 +21,10 @@ describe('Patient') do
   end
 
   describe('#doctor_id') do
-    it "starts out as nil" do
+    it "starts out as -1" do
       attributes = {:name => "Frank", :birthday => "1990-01-01"}
       patient_test = Patient.new(attributes)
-      expect(patient_test.doctor_id).to(eq(nil))
+      expect(patient_test.doctor_id).to(eq(-1))
     end
 
     it "can be set by user" do
@@ -49,6 +49,31 @@ describe('Patient') do
       patient1 = Patient.new(attributes)
       patient2 = Patient.new(attributes)
       expect(patient1).to(eq(patient2))
+    end
+  end
+
+  describe('#save') do
+    it "saves a patient to the database, assigning them an id" do
+      attributes = {:name => "Frank", :birthday => "1990-01-01"}
+      patient_test = Patient.new(attributes)
+      patient_test.save
+      expect(patient_test.id).not_to(eq(nil))
+    end
+  end
+
+  describe(".all") do
+    it "starts out as an empty array" do
+      expect(Patient.all).to(eq([]))
+    end
+
+    it "returns array of all saved patients" do
+      attributes1 = {:name => "Frank", :birthday => "1990-01-01"}
+      attributes2 = {:name => "Herbert", :birthday => "1990-01-01"}
+      patient1 = Patient.new(attributes1)
+      patient1.save
+      patient2 = Patient.new(attributes2)
+      patient2.save
+      expect(Patient.all).to(eq([patient1, patient2]))
     end
   end
 end

@@ -6,7 +6,7 @@ class Patient
 
   def initialize(attributes)
     @id = nil
-    @doctor_id = nil
+    @doctor_id = -1
     if attributes.has_key?(:id)
       @id = attributes[:id]
     end
@@ -23,5 +23,24 @@ class Patient
     birthdays_equal = @birthday == other_patient.birthday
     doctors_equal = @doctor_id == other_patient.doctor_id
     ids_equal & names_equal & birthdays_equal & doctors_equal
+  end
+
+  def save
+    results = DB.exec("INSERT INTO patients (name, birthday, doctor_id) VALUES ('#{@name}', '#{@birthday}', #{@doctor_id}) RETURNING id;")
+    @id = results.first["id"].to_i
+  end
+
+  def self.all
+    all_patients = []
+    results = DB.exec("SELECT * FROM patients;")
+    results.each do |result|
+      attributes = {}
+      attributes[:id] = result["id"].to_i
+      attributes[:name] = result["name"]
+      attributes[:birthday] = result["birthday"][0...10]
+      attributes[:doctor_id] = result["doctor_id"].to_i
+      all_patients.push(Patient.new(attributes))
+    end
+    all_patients
   end
 end

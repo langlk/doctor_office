@@ -34,4 +34,13 @@ describe('Patient') do
       expect(patient_test.doctor_id).to(eq(1))
     end
   end
+
+  describe('#==') do
+    it "declares two patients as equal if they have the same name, id, birthday, and doctor" do
+      attributes = {:name => "Frank", :birthday => "1990-01-01"}
+      patient1 = Patient.new(attributes)
+      patient2 = Patient.new(attributes)
+      expect(patient1).to(eq(patient2))
+    end
+  end
 end

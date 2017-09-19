@@ -16,4 +16,12 @@ class Patient
     @name = attributes[:name]
     @birthday = attributes[:birthday]
   end
+
+  def ==(other_patient)
+    ids_equal = @id == other_patient.id
+    names_equal = @name == other_patient.name
+    birthdays_equal = @birthday == other_patient.birthday
+    doctors_equal = @doctor_id == other_patient.doctor_id
+    ids_equal & names_equal & birthdays_equal & doctors_equal
+  end
 end

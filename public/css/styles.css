@@ -1,4 +1,4 @@
-#doctor-alert, #patient-alert {
+#doctor-alert, #patient-alert, #portal-alert {
   display: none;
   margin-top: 10px;
 }

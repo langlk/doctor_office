@@ -3,7 +3,10 @@
 <form action="/<%= @user %>/landing">
   <div class="form-group">
     <label for="<%= @user %>-name">Please enter your name:</label>
-    <input type="text" name="<%= @user %>-name" class="form-control">
+    <input id="portal-name" type="text" name="<%= @user %>-name" class="form-control">
   </div>
-  <button type="submit" class="btn">Submit</button>
+  <button type="submit" class="btn submit-portal">Submit</button>
+  <div id="portal-alert" class="alert alert-danger">
+    <p>Please enter a name.</p>
+  </div>
 </form>

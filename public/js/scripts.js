@@ -18,4 +18,13 @@ $(document).ready(function() {
       return
     }
   });
+
+  $(".submit-portal").click(function(event) {
+    var name = $("#portal-name").val()
+    if (name.length === 0) {
+      $("#portal-alert").show();
+      event.preventDefault();
+      return
+    }
+  });
 });

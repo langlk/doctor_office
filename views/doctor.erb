@@ -9,11 +9,12 @@
     <% if @user == "admin" %>
       <h5><a href="/admin/doctors/edit/<%= @doctor.id %>">Edit</a></h5>
     <% end %>
+
+    <p>
+      <strong>Name:</strong> <%= @doctor.name %>
+    </p>
   <% end %>
 
-  <p>
-    <strong>Name:</strong> <%= @doctor.name %>
-  </p>
   <p>
     <strong>Specialty:</strong> <%= @doctor.specialty %>
   </p>

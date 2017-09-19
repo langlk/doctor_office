@@ -65,6 +65,12 @@ post('/admin/patients/edit/:id') do
   redirect "/admin/patients/#{patient.id}"
 end
 
+get('/admin/patients/delete/:id') do
+  patient = Patient.find(params[:id].to_i)
+  patient.delete
+  redirect '/admin/patients'
+end
+
 get('/:user/doctors/:id') do
   @doctor = Doctor.find(params[:id].to_i)
   @user = params[:user]

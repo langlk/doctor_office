@@ -58,6 +58,16 @@ describe('Patient') do
     end
   end
 
+  describe('#delete') do
+    it "removes a patient from the database" do
+      attributes = {:name => "Frank", :birthday => "1990-01-01"}
+      patient_test = Patient.new(attributes)
+      patient_test.save
+      patient_test.delete
+      expect(Patient.all).to(eq([]))
+    end
+  end
+
   describe(".all") do
     it "starts out as an empty array" do
       expect(Patient.all).to(eq([]))

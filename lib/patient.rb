@@ -32,7 +32,10 @@ class Patient
       results = DB.exec("INSERT INTO patients (name, birthday, doctor_id) VALUES ('#{@name}', '#{@birthday}', #{@doctor_id}) RETURNING id;")
       @id = results.first["id"].to_i
     end
+  end
 
+  def delete
+    DB.exec("DELETE FROM patients WHERE id = #{@id};")
   end
 
   def self.all

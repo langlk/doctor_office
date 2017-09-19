@@ -36,6 +36,16 @@ get('/admin/:people_type') do
   erb(:people_list)
 end
 
+get('/admin/patients/:id') do
+  @patient = Patient.find(params[:id].to_i)
+  erb(:admin_patient)
+end
+
+get('/admin/doctors/:id') do
+  @doctor = Doctor.find(params[:id].to_i)
+  erb(:admin_doctor)
+end
+
 post('/add_doctor') do
   name = params["doctor-name"]
   specialty = params["doctor-specialty"]

@@ -44,6 +44,16 @@ class Patient
     all_patients
   end
 
+  def self.find(patient_id)
+    results = DB.exec("SELECT * FROM patients WHERE id = #{patient_id};")
+    attributes = {}
+    attributes[:id] = results.first["id"].to_i
+    attributes[:name] = results.first["name"]
+    attributes[:birthday] = results.first["birthday"][0...10]
+    attributes[:doctor_id] = results.first["doctor_id"].to_i
+    Patient.new(attributes)
+  end
+
   def self.find_by_name(name)
     all_patients = self.all
     all_patients.each do |patient|

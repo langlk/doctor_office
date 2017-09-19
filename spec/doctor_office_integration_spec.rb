@@ -19,7 +19,6 @@ describe('Administrative Portal', {:type => :feature}) do
     fill_in('patient-name', :with => "Frank")
     fill_in('patient-birthday', :with => "12-12-1950")
     click_button('Add Patient')
-    save_and_open_page
     click_link('Back to Administration')
     click_link('All Patients')
     expect(page).to have_content("Frank")

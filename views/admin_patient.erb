@@ -1,0 +1,13 @@
+<h1>Patient Information</h1>
+
+<p>
+  <strong>Name:</strong> <%= @patient.name %>
+</p>
+<p>
+  <strong>Birthday:</strong> <%= @patient.birthday %>
+</p>
+<p>
+  <strong>Assigned Doctor:</strong> <a href="/admin/doctors/<%= @patient.doctor_id %>"><%= Doctor.find(@patient.doctor_id).name %></a>
+</p>
+
+<p><a href="/admin">Back to Administration</a></p>

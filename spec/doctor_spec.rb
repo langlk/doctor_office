@@ -30,4 +30,26 @@ describe('Doctor') do
       expect(doc1).to(eq(doc2))
     end
   end
+
+  describe('#save') do
+    it "saves a Doctor to the database and gives it an id" do
+      doc_test = Doctor.new({:name => "Strange", :specialty => "Surgeon"})
+      doc_test.save
+      expect(doc_test.id).not_to(eq(nil))
+    end
+  end
+
+  describe('.all') do
+    it "starts out with an empty array" do
+      expect(Doctor.all).to(eq([]))
+    end
+
+    it "returns an array of all saved doctors" do
+      doc1 = Doctor.new({:name => "Strange", :specialty => "Surgeon"})
+      doc1.save
+      doc2 = Doctor.new({:name => "Who", :specialty => "Time"})
+      doc2.save
+      expect(Doctor.all).to(eq([doc1, doc2]))
+    end
+  end
 end

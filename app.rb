@@ -51,6 +51,21 @@ get('/admin/patients/:id') do
   erb(:admin_patient)
 end
 
+get('/admin/patients/edit/:id') do
+  @patient = Patient.find(params[:id].to_i)
+  @doctors = Doctor.all
+  erb(:edit_patient)
+end
+
+post('/admin/patients/edit/:id') do
+  patient = Patient.find(params[:id].to_i)
+  patient.name = params["patient-name"]
+  patient.birthday = params["patient-birthday"]
+  patient.doctor_id = params["assigned-doctor"].to_i
+  patient.save
+  redirect "/admin/patients/#{patient.id}"
+end
+
 get('/admin/doctors/:id') do
   @doctor = Doctor.find(params[:id].to_i)
   erb(:admin_doctor)

@@ -1,6 +1,8 @@
 <% if @patient %>
   <h2>Patient Information</h2>
 
+  <h5><a href="/admin/patients/edit/<%= @patient.id %>">Edit</a></h5>
+
   <p>
     <strong>Name:</strong> <%= @patient.name %>
   </p>

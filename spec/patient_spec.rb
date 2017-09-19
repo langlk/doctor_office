@@ -53,11 +53,22 @@ describe('Patient') do
   end
 
   describe('#save') do
-    it "saves a patient to the database, assigning them an id" do
+    it "saves a new patient to the database, assigning them an id" do
       attributes = {:name => "Frank", :birthday => "1990-01-01"}
       patient_test = Patient.new(attributes)
       patient_test.save
       expect(patient_test.id).not_to(eq(nil))
+    end
+
+    it "updates a patient's information in the database if patient has been saved, keeping id the same" do
+      attributes = {:name => "Frank", :birthday => "1990-01-01"}
+      patient_test = Patient.new(attributes)
+      patient_test.save
+      test_id = patient_test.id
+      patient_test.doctor_id = 8
+      patient_test.save
+      expect(patient_test.id).to(eq(test_id))
+      expect(Patient.find(patient_test.id)).to(eq(patient_test))
     end
   end
 

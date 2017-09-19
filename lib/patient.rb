@@ -26,8 +26,13 @@ class Patient
   end
 
   def save
-    results = DB.exec("INSERT INTO patients (name, birthday, doctor_id) VALUES ('#{@name}', '#{@birthday}', #{@doctor_id}) RETURNING id;")
-    @id = results.first["id"].to_i
+    if @id # patient has id, has been saved
+      DB.exec("UPDATE patients SET name = '#{@name}', birthday = '#{@birthday}', doctor_id = #{@doctor_id} WHERE id = #{@id};")
+    else # id is nil, patient is new
+      results = DB.exec("INSERT INTO patients (name, birthday, doctor_id) VALUES ('#{@name}', '#{@birthday}', #{@doctor_id}) RETURNING id;")
+      @id = results.first["id"].to_i
+    end
+
   end
 
   def self.all

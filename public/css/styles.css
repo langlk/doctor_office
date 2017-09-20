@@ -1,3 +1,19 @@
+.btn {
+  margin-left:
+}
+.form-header h2, .form-header form {
+  display: inline-block;
+}
+
+.form-header .btn {
+  vertical-align: bottom;
+  margin-left: 1em;
+}
+
+.btn.cancel {
+  margin-right: 1em;
+}
+
 #doctor-alert, #patient-alert, #portal-alert {
   display: none;
   margin-top: 10px;

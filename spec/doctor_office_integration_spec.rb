@@ -56,6 +56,19 @@ describe('Administrative Portal', {:type => :feature}) do
     click_button('Update')
     expect(page).to have_content('Space')
   end
+
+  it "allows admin to delete a patient" do
+    visit('/admin/landing')
+    fill_in('patient-name', :with => "Herbert")
+    fill_in('patient-birthday', :with => "12-12-1950")
+    click_button('Add Patient')
+    click_link('Back to Administration')
+    click_link('All Patients')
+    click_link('Herbert')
+    click_link('Edit')
+    click_button('Delete')
+    expect(page).to have_no_content('Herbert')
+  end
 end
 
 describe('Doctor Portal', {:type => :feature}) do

@@ -1,6 +1,11 @@
 <% if @patient %>
+  <div class="form-header">
+    <h2>Edit Patient</h2>
+    <form class="delete" action="/admin/patients/delete/<%= @patient.id %>" method="post">
+      <button type="submit" class="btn">Delete</button>
+    </form>
+  </div>
   <form action="/admin/patients/edit/<%= @patient.id %>" method="post">
-    <h3>Edit Patient</h3>
 
     <div class="form-group">
       <label for="patient-name">Patient Name</label>
@@ -26,9 +31,9 @@
       </select>
     </div>
 
-    <a href="/admin/patients/<%= @patient.id %>"><button type="button" class="btn">Cancel</button></a>
+    <a href="/admin/patients/<%= @patient.id %>"><button type="button" class="btn cancel">Cancel</button></a>
     <button type="submit" class="btn submit-patient">Update</button>
-    <a href="/admin/patients/delete/<%= @patient.id %>"><button type="button" class="btn">Delete</button></a>
+
     <div id="patient-alert" class="alert alert-danger">
       <p>Please enter a name and birthday.</p>
     </div>

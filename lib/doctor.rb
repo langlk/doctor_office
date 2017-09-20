@@ -44,6 +44,10 @@ class Doctor
     assigned_patients
   end
 
+  def delete
+    DB.exec("DELETE FROM doctors WHERE id = #{@id};")
+  end
+
   def self.all
     all_doctors = []
     results = DB.exec("SELECT * FROM doctors;")

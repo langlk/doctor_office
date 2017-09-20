@@ -57,6 +57,15 @@ describe('Doctor') do
     end
   end
 
+  describe('#delete') do
+    it "delets doctor from the database" do
+      doc_test = Doctor.new({:name => "Strange", :specialty => "Surgeon"})
+      doc_test.save
+      doc_test.delete
+      expect(Doctor.all).to(eq([]))
+    end
+  end
+
   describe('.all') do
     it "starts out with an empty array" do
       expect(Doctor.all).to(eq([]))

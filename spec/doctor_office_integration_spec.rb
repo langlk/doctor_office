@@ -69,6 +69,19 @@ describe('Administrative Portal', {:type => :feature}) do
     click_button('Delete')
     expect(page).to have_no_content('Herbert')
   end
+
+  it "allows admin to delete a doctor" do
+    visit('/admin/landing')
+    fill_in('doctor-name', :with => "Who")
+    fill_in('doctor-specialty', :with => "Time")
+    click_button('Add Doctor')
+    click_link('Back to Administration')
+    click_link('All Doctors')
+    click_link('Who')
+    click_link('Edit')
+    click_button('Delete')
+    expect(page).to have_no_content("Who")
+  end
 end
 
 describe('Doctor Portal', {:type => :feature}) do

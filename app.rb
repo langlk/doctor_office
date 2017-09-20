@@ -90,6 +90,12 @@ post('/admin/doctors/edit/:id') do
   redirect "/admin/doctors/#{doctor.id}"
 end
 
+post('/admin/doctors/delete/:id') do
+  doctor = Doctor.find(params[:id].to_i)
+  doctor.delete
+  redirect '/admin/doctors'
+end
+
 post('/add_doctor') do
   name = params["doctor-name"]
   specialty = params["doctor-specialty"]

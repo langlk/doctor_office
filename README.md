@@ -12,7 +12,9 @@ _A Ruby Script_
 
 * Clone this repository
 
-## Specifications
+## Known Bugs
+
+* Deleting a doctor who has patients assigned currently breaks patient pages. A fix is in the works. Please unassign patients from a doctor before deleting for now.
 
 ## Support and contact details
 

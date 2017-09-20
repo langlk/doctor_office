@@ -1,8 +1,8 @@
 <% if @patient %>
   <div class="form-header">
     <h2>Edit Patient</h2>
-    <form class="delete" action="/admin/patients/delete/<%= @patient.id %>" method="post">
-      <button type="submit" class="btn">Delete</button>
+    <form action="/admin/patients/delete/<%= @patient.id %>" method="post">
+      <button type="submit" class="btn delete">Delete</button>
     </form>
   </div>
   <form action="/admin/patients/edit/<%= @patient.id %>" method="post">

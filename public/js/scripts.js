@@ -5,17 +5,17 @@ $(document).ready(function() {
     if (name.length === 0 || specialty.length === 0) {
       $("#doctor-alert").show();
       event.preventDefault()
-      return
+      return;
     }
   });
 
   $(".submit-patient").click(function(event) {
     var name = $("#patient-name").val()
     var birthday = $("#patient-birthday").val()
-    if (name.length === 0 || birthday.length !== 10) {
+    if (name.length === 0 || birthday.length === 0) {
       $("#patient-alert").show();
       event.preventDefault()
-      return
+      return;
     }
   });
 
@@ -24,7 +24,15 @@ $(document).ready(function() {
     if (name.length === 0) {
       $("#portal-alert").show();
       event.preventDefault();
-      return
+      return;
+    }
+  });
+
+  $("button.delete").click(function(event) {
+    var deleteConfirm = confirm("Are you sure you want to delete this user?")
+    if (!deleteConfirm) {
+      event.preventDefault();
+      return;
     }
   });
 });

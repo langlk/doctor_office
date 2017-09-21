@@ -5,20 +5,15 @@ class Doctor
   attr_accessor :name, :specialty
 
   def initialize(attributes)
-    if attributes.has_key?(:id)
-      @id = attributes[:id]
-    else
-      @id = nil
-    end
+    @id = attributes[:id] || nil
     @name = attributes[:name]
     @specialty = attributes[:specialty]
   end
 
   def ==(other_doctor)
-    ids_equal = @id == other_doctor.id
-    names_equal = @name == other_doctor.name
-    specialties_equal = @specialty == other_doctor.specialty
-    ids_equal & names_equal & specialties_equal
+    (@id == other_doctor.id) &
+    (@name == other_doctor.name) &
+    (@specialty == other_doctor.specialty)
   end
 
   def save
@@ -31,17 +26,15 @@ class Doctor
   end
 
   def patients
-    assigned_patients = []
     results = DB.exec("SELECT * FROM patients WHERE doctor_id = #{@id};")
-    results.each do |result|
-      attributes = {}
-      attributes[:id] = result["id"].to_i
-      attributes[:name] = result["name"]
-      attributes[:birthday] = result["birthday"][0...10]
-      attributes[:doctor_id] = result["doctor_id"].to_i
-      assigned_patients.push(Patient.new(attributes))
+    results.map do |result|
+      Patient.new({
+        id: result["id"].to_i,
+        name: result["name"],
+        birthday: result["birthday"][0...10],
+        doctor_id: result["doctor_id"].to_i
+      })
     end
-    assigned_patients
   end
 
   def delete

@@ -46,6 +46,7 @@ class Doctor
 
   def delete
     DB.exec("DELETE FROM doctors WHERE id = #{@id};")
+    DB.exec("UPDATE patients SET doctor_id = -1 WHERE doctor_id = #{@id};")
   end
 
   def self.all

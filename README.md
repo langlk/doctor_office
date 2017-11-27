@@ -6,12 +6,12 @@
 
 ## Description
 
-_A Ruby web app for a mock doctor's office_
+_A Ruby web app for a mock doctor's office._
 
 ## Setup/Installation Requirements
 
 * Clone this repository
-* Run ```bundle install``` in the project root.
+* Run ```bundle install``` in the project root
 * Run ```ruby app.rb```
 * Open ```localhost:4567``` in your web browser
 
